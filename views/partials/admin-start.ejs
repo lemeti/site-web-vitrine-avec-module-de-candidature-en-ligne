@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title ? `${title} - Admin IBA` : 'Admin IBA' %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <a class="brand brand--admin" href="/admin">
+      <span class="brand-mark">IBA</span>
+      <span>
+        <strong>Administration</strong>
+        <small><%= admin ? admin.name : 'Connexion' %></small>
+      </span>
+    </a>
+    <% if (admin) { %>
+      <form action="/admin/logout" method="post">
+        <button class="button button--ghost" type="submit">Deconnexion</button>
+      </form>
+    <% } %>
+  </header>
+  <% if (admin) { %>
+    <aside class="admin-sidebar">
+      <a class="<%= active === 'dashboard' ? 'is-active' : '' %>" href="/admin">Tableau de bord</a>
+      <a class="<%= active === 'applications' ? 'is-active' : '' %>" href="/admin/candidatures">Candidatures</a>
+      <a class="<%= active === 'news' ? 'is-active' : '' %>" href="/admin/actualites">Actualites</a>
+      <a class="<%= active === 'settings' ? 'is-active' : '' %>" href="/admin/parametres">Admissions</a>
+      <a class="<%= active === 'accounts' ? 'is-active' : '' %>" href="/admin/comptes">Comptes</a>
+      <a href="/">Voir le site</a>
+    </aside>
+  <% } %>
+  <main class="<%= admin ? 'admin-main' : 'admin-login-main' %>">
+    <%- include('flash') %>

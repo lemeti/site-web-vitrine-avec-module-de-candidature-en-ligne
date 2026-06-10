@@ -1,0 +1,110 @@
+<%- include('../partials/site-start') %>
+
+<section class="hero hero--iba">
+  <div class="hero-content">
+    <p class="eyebrow">Admissions <%= academicYear %></p>
+    <h1>Institut Universitaire des Beaux-Arts de Nkongsamba</h1>
+    <p>
+      Decouvrez les formations artistiques, culturelles et architecturales de l'IBA,
+      puis deposez votre dossier de candidature en ligne avec un numero de suivi.
+    </p>
+    <div class="hero-actions">
+      <a class="button" href="/candidature">Deposer ma candidature</a>
+      <a class="button button--secondary" href="/admissions">Voir les conditions</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--compact">
+  <div class="metrics">
+    <div>
+      <strong>7</strong>
+      <span>Filieres artistiques</span>
+    </div>
+    <div>
+      <strong>3</strong>
+      <span>Cycles d'entree</span>
+    </div>
+    <div>
+      <strong>4</strong>
+      <span>Centres de composition</span>
+    </div>
+    <div>
+      <strong>20 000</strong>
+      <span>FCFA frais de concours</span>
+    </div>
+  </div>
+</section>
+
+<section class="section split">
+  <div>
+    <p class="eyebrow">Plateforme institutionnelle</p>
+    <h2>Une candidature plus claire, rapide et tracable</h2>
+    <p><%= admissionMessage %></p>
+    <ul class="check-list">
+      <li>Formulaire complet avec controle des champs obligatoires.</li>
+      <li>Televersement des pieces justificatives en PDF, JPG ou PNG.</li>
+      <li>Generation automatique d'un numero de dossier.</li>
+      <li>Suivi administratif par statut : recu, incomplet, valide ou rejete.</li>
+    </ul>
+  </div>
+  <div class="feature-panel">
+    <h3>Calendrier concours</h3>
+    <dl class="timeline">
+      <div><dt>Depot des dossiers</dt><dd>08 septembre 2026</dd></div>
+      <div><dt>Licence 1ere annee</dt><dd>10 septembre 2026</dd></div>
+      <div><dt>Licence 3eme annee</dt><dd>11 septembre 2026</dd></div>
+      <div><dt>Master</dt><dd>12 septembre 2026</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Formations</p>
+    <h2>Filieres de l'IBA</h2>
+    <a href="/filieres">Toutes les filieres</a>
+  </div>
+  <div class="cards cards--programs">
+    <% programs.forEach((program) => { %>
+      <article class="card">
+        <span class="program-code"><%= program.code %></span>
+        <h3><%= program.name %></h3>
+        <p><%= program.description %></p>
+        <a href="/filieres#<%= program.code %>">Details</a>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section media-band">
+  <div>
+    <p class="eyebrow">Domaines artistiques</p>
+    <h2>Beaux-arts, architecture, cinema, theatre, mode et musique</h2>
+    <p>
+      Le site valorise les disciplines de l'institut a travers une experience visuelle
+      institutionnelle, responsive et facile a parcourir sur mobile.
+    </p>
+    <a class="button button--secondary" href="/galerie">Voir la galerie</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Informations</p>
+    <h2>Actualites recentes</h2>
+    <a href="/actualites">Voir tout</a>
+  </div>
+  <div class="cards">
+    <% news.forEach((item) => { %>
+      <article class="card">
+        <small><%= formatDate(item.published_at) %></small>
+        <h3><%= item.title %></h3>
+        <p><%= item.excerpt %></p>
+        <a href="/actualites/<%= item.slug %>">Lire</a>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('../partials/site-end') %>

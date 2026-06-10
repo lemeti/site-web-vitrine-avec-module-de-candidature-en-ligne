@@ -1,0 +1,59 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--admissions">
+  <p class="eyebrow">Concours <%= academicYear %></p>
+  <h1>Admissions</h1>
+  <p><%= admissionMessage %></p>
+  <a class="button" href="/candidature">Commencer ma candidature</a>
+</section>
+
+<section class="section split">
+  <div>
+    <h2>Cycles concernes</h2>
+    <div class="pill-list">
+      <% cycles.forEach((cycle) => { %>
+        <span><%= cycle.name %></span>
+      <% }) %>
+    </div>
+    <h2>Centres de composition</h2>
+    <div class="pill-list">
+      <% centers.forEach((center) => { %>
+        <span><%= center.name %></span>
+      <% }) %>
+    </div>
+  </div>
+  <div class="feature-panel">
+    <h3>Dates importantes</h3>
+    <dl class="timeline">
+      <div><dt>Date limite de depot</dt><dd>08 septembre 2026</dd></div>
+      <div><dt>Concours Licence 1ere annee</dt><dd>10 septembre 2026</dd></div>
+      <div><dt>Concours Licence 3eme annee</dt><dd>11 septembre 2026</dd></div>
+      <div><dt>Concours Master</dt><dd>12 septembre 2026</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <p class="eyebrow">Dossier</p>
+    <h2>Pieces a televerser</h2>
+  </div>
+  <div class="document-grid">
+    <% documentTypes.forEach((doc) => { %>
+      <div class="document-item">
+        <strong><%= doc.label %></strong>
+        <small><%= doc.requiredFor === 'civil_servant' ? 'Obligatoire pour fonctionnaires' : 'Obligatoire' %></small>
+      </div>
+    <% }) %>
+  </div>
+</section>
+
+<section class="section cta-strip">
+  <div>
+    <h2>Votre dossier est pret ?</h2>
+    <p>Le systeme verifiera les champs et les pieces avant la soumission definitive.</p>
+  </div>
+  <a class="button" href="/candidature">Deposer en ligne</a>
+</section>
+
+<%- include('../partials/site-end') %>

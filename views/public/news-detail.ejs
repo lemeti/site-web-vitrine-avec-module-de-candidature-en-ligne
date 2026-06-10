@@ -1,0 +1,13 @@
+<%- include('../partials/site-start') %>
+
+<article class="section article-page">
+  <a href="/actualites" class="back-link">Retour aux actualites</a>
+  <p class="eyebrow"><%= formatDate(item.published_at) %></p>
+  <h1><%= item.title %></h1>
+  <p class="lead"><%= item.excerpt %></p>
+  <% item.body.split(/\n+/).forEach((paragraph) => { %>
+    <p><%= paragraph %></p>
+  <% }) %>
+</article>
+
+<%- include('../partials/site-end') %>

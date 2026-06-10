@@ -1,0 +1,41 @@
+<%- include('../partials/admin-start') %>
+
+<section class="admin-title">
+  <div>
+    <p class="eyebrow">Contenu public</p>
+    <h1>Actualites</h1>
+  </div>
+  <a class="button" href="/admin/actualites/nouveau">Nouvelle actualite</a>
+</section>
+
+<section class="admin-panel">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Date</th>
+          <th>Publication</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% news.forEach((item) => { %>
+          <tr>
+            <td><%= item.title %></td>
+            <td><%= formatDate(item.published_at) %></td>
+            <td><%= item.is_published ? 'Publiee' : 'Brouillon' %></td>
+            <td class="row-actions">
+              <a href="/admin/actualites/<%= item.id %>/modifier">Modifier</a>
+              <form action="/admin/actualites/<%= item.id %>/supprimer" method="post" data-confirm="Supprimer cette actualite ?">
+                <button class="link-button" type="submit">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<%- include('../partials/admin-end') %>

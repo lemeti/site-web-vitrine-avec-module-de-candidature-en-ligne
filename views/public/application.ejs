@@ -1,0 +1,195 @@
+<%- include('../partials/site-start') %>
+
+<% const fieldValue = (name) => old[name] || ''; %>
+<% const selected = (name, value) => String(old[name] || '') === String(value) ? 'selected' : ''; %>
+<% const checked = (name) => old[name] === 'on' ? 'checked' : ''; %>
+
+<section class="page-hero page-hero--application">
+  <p class="eyebrow">Depot de dossier <%= academicYear %></p>
+  <h1>Candidature en ligne</h1>
+  <p>
+    Renseignez les informations demandees, choisissez votre cycle, votre filiere
+    et votre centre de composition, puis televersez les pieces justificatives.
+  </p>
+  <span class="deadline">Date limite : <%= formatDate(deadline) %></span>
+</section>
+
+<section class="section">
+  <% if (staticOnly) { %>
+    <div class="alert alert--warning">
+      Cette version Netlify est statique : le formulaire permet de visualiser le parcours candidat, mais la soumission definitive necessite le backend.
+    </div>
+  <% } %>
+  <% if (!isOpen) { %>
+    <div class="alert alert--error">
+      La periode de depot des dossiers est fermee.
+    </div>
+  <% } %>
+  <% if (errors.form) { %>
+    <div class="alert alert--error"><%= errors.form %></div>
+  <% } %>
+
+  <form class="application-form" action="<%= staticOnly ? '#' : '/candidature' %>" method="post" enctype="multipart/form-data" data-static-form="<%= staticOnly ? 'true' : 'false' %>" novalidate>
+    <fieldset>
+      <legend>Identite du candidat</legend>
+      <div class="form-grid">
+        <label>
+          <span>Nom *</span>
+          <input name="last_name" value="<%= fieldValue('last_name') %>" required>
+          <% if (errors.last_name) { %><small class="field-error"><%= errors.last_name %></small><% } %>
+        </label>
+        <label>
+          <span>Prenom *</span>
+          <input name="first_name" value="<%= fieldValue('first_name') %>" required>
+          <% if (errors.first_name) { %><small class="field-error"><%= errors.first_name %></small><% } %>
+        </label>
+        <label>
+          <span>Date de naissance *</span>
+          <input type="date" name="birth_date" value="<%= fieldValue('birth_date') %>" required>
+          <% if (errors.birth_date) { %><small class="field-error"><%= errors.birth_date %></small><% } %>
+        </label>
+        <label>
+          <span>Lieu de naissance *</span>
+          <input name="birth_place" value="<%= fieldValue('birth_place') %>" required>
+          <% if (errors.birth_place) { %><small class="field-error"><%= errors.birth_place %></small><% } %>
+        </label>
+        <label>
+          <span>Sexe *</span>
+          <select name="gender" required>
+            <option value="">Choisir</option>
+            <option value="Femme" <%= selected('gender', 'Femme') %>>Femme</option>
+            <option value="Homme" <%= selected('gender', 'Homme') %>>Homme</option>
+            <option value="Autre" <%= selected('gender', 'Autre') %>>Autre</option>
+          </select>
+          <% if (errors.gender) { %><small class="field-error"><%= errors.gender %></small><% } %>
+        </label>
+        <label>
+          <span>Nationalite *</span>
+          <input name="nationality" value="<%= fieldValue('nationality') %>" required>
+          <% if (errors.nationality) { %><small class="field-error"><%= errors.nationality %></small><% } %>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Contact</legend>
+      <div class="form-grid">
+        <label>
+          <span>Telephone *</span>
+          <input name="phone" value="<%= fieldValue('phone') %>" required>
+          <% if (errors.phone) { %><small class="field-error"><%= errors.phone %></small><% } %>
+        </label>
+        <label>
+          <span>E-mail *</span>
+          <input type="email" name="email" value="<%= fieldValue('email') %>" required>
+          <% if (errors.email) { %><small class="field-error"><%= errors.email %></small><% } %>
+        </label>
+        <label class="span-2">
+          <span>Adresse *</span>
+          <input name="address" value="<%= fieldValue('address') %>" required>
+          <% if (errors.address) { %><small class="field-error"><%= errors.address %></small><% } %>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Choix de candidature</legend>
+      <div class="form-grid">
+        <label>
+          <span>Cycle d'entree *</span>
+          <select name="cycle_id" required>
+            <option value="">Choisir</option>
+            <% cycles.forEach((cycle) => { %>
+              <option value="<%= cycle.id %>" <%= selected('cycle_id', cycle.id) %>><%= cycle.name %></option>
+            <% }) %>
+          </select>
+          <% if (errors.cycle_id) { %><small class="field-error"><%= errors.cycle_id %></small><% } %>
+        </label>
+        <label>
+          <span>Filiere souhaitee *</span>
+          <select name="program_id" required>
+            <option value="">Choisir</option>
+            <% programs.forEach((program) => { %>
+              <option value="<%= program.id %>" <%= selected('program_id', program.id) %>><%= program.code %> - <%= program.name %></option>
+            <% }) %>
+          </select>
+          <% if (errors.program_id) { %><small class="field-error"><%= errors.program_id %></small><% } %>
+        </label>
+        <label>
+          <span>Centre de composition *</span>
+          <select name="center_id" required>
+            <option value="">Choisir</option>
+            <% centers.forEach((center) => { %>
+              <option value="<%= center.id %>" <%= selected('center_id', center.id) %>><%= center.name %></option>
+            <% }) %>
+          </select>
+          <% if (errors.center_id) { %><small class="field-error"><%= errors.center_id %></small><% } %>
+        </label>
+        <label>
+          <span>Numero du recu de paiement *</span>
+          <input name="payment_receipt_number" value="<%= fieldValue('payment_receipt_number') %>" required>
+          <% if (errors.payment_receipt_number) { %><small class="field-error"><%= errors.payment_receipt_number %></small><% } %>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Parcours academique</legend>
+      <div class="form-grid">
+        <label>
+          <span>Dernier diplome *</span>
+          <input name="last_degree" value="<%= fieldValue('last_degree') %>" required>
+          <% if (errors.last_degree) { %><small class="field-error"><%= errors.last_degree %></small><% } %>
+        </label>
+        <label>
+          <span>Etablissement *</span>
+          <input name="school" value="<%= fieldValue('school') %>" required>
+          <% if (errors.school) { %><small class="field-error"><%= errors.school %></small><% } %>
+        </label>
+        <label>
+          <span>Annee d'obtention *</span>
+          <input type="number" name="graduation_year" min="1980" max="2026" value="<%= fieldValue('graduation_year') %>" required>
+          <% if (errors.graduation_year) { %><small class="field-error"><%= errors.graduation_year %></small><% } %>
+        </label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Situation fonctionnaire</legend>
+      <label class="checkbox-line">
+        <input type="checkbox" name="is_civil_servant" data-civil-servant-toggle <%= checked('is_civil_servant') %>>
+        <span>Je suis fonctionnaire ou agent public concerne par une autorisation.</span>
+      </label>
+      <label data-civil-servant-details class="<%= old.is_civil_servant === 'on' ? '' : 'is-hidden' %>">
+        <span>Administration / precision</span>
+        <textarea name="civil_servant_details" rows="3"><%= fieldValue('civil_servant_details') %></textarea>
+        <% if (errors.civil_servant_details) { %><small class="field-error"><%= errors.civil_servant_details %></small><% } %>
+      </label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Pieces justificatives</legend>
+      <p class="form-note">Formats acceptes : PDF, JPG ou PNG. Taille maximale : <%= uploadMaxMegaBytes %> Mo par fichier.</p>
+      <div class="upload-grid">
+        <% documentTypes.forEach((doc) => { %>
+          <label class="upload-box <%= errors[doc.key] ? 'has-error' : '' %>">
+            <span><%= doc.label %></span>
+            <small><%= doc.requiredFor === 'civil_servant' ? 'Requis pour fonctionnaires' : 'Obligatoire' %></small>
+            <input type="file" name="<%= doc.key %>" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+            <% if (errors[doc.key]) { %><small class="field-error"><%= errors[doc.key] %></small><% } %>
+          </label>
+        <% }) %>
+      </div>
+    </fieldset>
+
+    <div class="form-actions">
+      <p>
+        En soumettant ce dossier, vous confirmez l'exactitude des informations fournies
+        et acceptez leur traitement par l'IBA pour les admissions <%= academicYear %>.
+      </p>
+      <button class="button" type="submit" <%= isOpen && !staticOnly ? '' : 'disabled' %>><%= staticOnly ? 'Soumission indisponible sur Netlify' : 'Soumettre le dossier' %></button>
+    </div>
+  </form>
+</section>
+
+<%- include('../partials/site-end') %>

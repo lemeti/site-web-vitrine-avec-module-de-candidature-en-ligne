@@ -1,0 +1,31 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--programs">
+  <p class="eyebrow">Offre de formation</p>
+  <h1>Filieres de formation</h1>
+  <p>Sept filieres couvrant les domaines des beaux-arts, de l'architecture, du cinema, du patrimoine, du theatre, de la mode et de la musique.</p>
+</section>
+
+<section class="section">
+  <div class="cards cards--programs">
+    <% programs.forEach((program) => { %>
+      <article class="card program-card" id="<%= program.code %>">
+        <span class="program-code"><%= program.code %></span>
+        <h2><%= program.name %></h2>
+        <p><%= program.description %></p>
+        <dl class="inline-defs">
+          <div>
+            <dt>Diplomes</dt>
+            <dd><%= program.degrees %></dd>
+          </div>
+          <div>
+            <dt>Debouches</dt>
+            <dd><%= program.careers %></dd>
+          </div>
+        </dl>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('../partials/site-end') %>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= title ? `${title} - ${appName}` : appName %></title>
+  <meta name="description" content="Site institutionnel et plateforme de candidature en ligne de l'Institut Universitaire des Beaux-Arts de l'Universite de Douala a Nkongsamba.">
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Accueil IBA">
+      <span class="brand-mark">IBA</span>
+      <span>
+        <strong>Institut Universitaire des Beaux-Arts</strong>
+        <small>Universite de Douala a Nkongsamba</small>
+      </span>
+    </a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-navigation">
+      Menu
+    </button>
+    <nav class="main-nav" id="main-navigation" data-nav>
+      <a class="<%= active === 'home' ? 'is-active' : '' %>" href="/">Accueil</a>
+      <a class="<%= active === 'about' ? 'is-active' : '' %>" href="/a-propos">A propos</a>
+      <a class="<%= active === 'programs' ? 'is-active' : '' %>" href="/filieres">Filieres</a>
+      <a class="<%= active === 'admissions' ? 'is-active' : '' %>" href="/admissions">Admissions</a>
+      <a class="<%= active === 'news' ? 'is-active' : '' %>" href="/actualites">Actualites</a>
+      <a class="<%= active === 'contact' ? 'is-active' : '' %>" href="/contact">Contacts</a>
+      <a class="nav-cta <%= active === 'candidature' ? 'is-active' : '' %>" href="/candidature">Candidature</a>
+    </nav>
+  </header>
+  <main>
+    <%- include('flash') %>

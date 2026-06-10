@@ -1,0 +1,42 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--simple">
+  <p class="eyebrow">Nous contacter</p>
+  <h1>Contacts</h1>
+  <p>Pour toute question sur les admissions ou le suivi des dossiers, contactez le service de la scolarite.</p>
+</section>
+
+<section class="section split">
+  <div class="feature-panel">
+    <h2>Coordonnees</h2>
+    <dl class="timeline">
+      <div><dt>Adresse</dt><dd><%= address %></dd></div>
+      <div><dt>Telephone</dt><dd><%= contactPhone %></dd></div>
+      <div><dt>E-mail</dt><dd><%= contactEmail %></dd></div>
+    </dl>
+  </div>
+  <form class="contact-form" action="<%= staticOnly ? '/merci/' : '/contact' %>" method="post" <%- staticOnly ? 'name="contact" data-netlify="true" netlify-honeypot="bot-field"' : '' %>>
+    <% if (staticOnly) { %>
+      <input type="hidden" name="form-name" value="contact">
+      <label class="is-hidden">
+        <span>Ne pas remplir</span>
+        <input name="bot-field">
+      </label>
+    <% } %>
+    <label>
+      <span>Nom complet</span>
+      <input name="name" required>
+    </label>
+    <label>
+      <span>E-mail</span>
+      <input type="email" name="email" required>
+    </label>
+    <label>
+      <span>Message</span>
+      <textarea name="message" rows="6" required></textarea>
+    </label>
+    <button class="button" type="submit">Envoyer</button>
+  </form>
+</section>
+
+<%- include('../partials/site-end') %>

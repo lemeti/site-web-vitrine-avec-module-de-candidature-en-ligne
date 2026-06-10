@@ -1,0 +1,17 @@
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>IBA Nkongsamba</strong>
+      <p>Plateforme institutionnelle et admissions <%= academicYear %>.</p>
+    </div>
+    <div class="footer-links">
+      <a href="/faq">FAQ</a>
+      <a href="/confidentialite">Confidentialite</a>
+      <% if (!staticOnly) { %>
+        <a href="/admin/login">Administration</a>
+      <% } %>
+    </div>
+  </footer>
+  <script src="/js/app.js"></script>
+</body>
+</html>

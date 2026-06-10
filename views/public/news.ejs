@@ -1,0 +1,25 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--simple">
+  <p class="eyebrow">Communiques</p>
+  <h1>Actualites et annonces</h1>
+  <p>Retrouvez les informations importantes concernant l'institut, les admissions et les concours.</p>
+</section>
+
+<section class="section">
+  <% if (!news.length) { %>
+    <div class="empty-state">Aucune actualite publiee pour le moment.</div>
+  <% } %>
+  <div class="cards">
+    <% news.forEach((item) => { %>
+      <article class="card">
+        <small><%= formatDate(item.published_at) %></small>
+        <h2><%= item.title %></h2>
+        <p><%= item.excerpt %></p>
+        <a href="/actualites/<%= item.slug %>">Lire l'annonce</a>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('../partials/site-end') %>

@@ -1,0 +1,12 @@
+<%- include('../partials/site-start') %>
+
+<section class="section empty-state">
+  <h1>Erreur serveur</h1>
+  <p>Une erreur est survenue pendant le traitement de la demande.</p>
+  <% if (message) { %>
+    <pre class="error-message"><%= message %></pre>
+  <% } %>
+  <a class="button" href="/">Retour a l'accueil</a>
+</section>
+
+<%- include('../partials/site-end') %>

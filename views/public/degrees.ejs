@@ -1,0 +1,32 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--simple">
+  <p class="eyebrow">Diplomes</p>
+  <h1>Diplomes delivres</h1>
+  <p>Les formations de l'IBA accompagnent les candidats vers les niveaux Licence et Master selon le cycle d'entree choisi.</p>
+</section>
+
+<section class="section">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Filiere</th>
+          <th>Code</th>
+          <th>Diplomes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% programs.forEach((program) => { %>
+          <tr>
+            <td><%= program.name %></td>
+            <td><%= program.code %></td>
+            <td><%= program.degrees %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<%- include('../partials/site-end') %>

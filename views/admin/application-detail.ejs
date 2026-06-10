@@ -1,0 +1,77 @@
+<%- include('../partials/admin-start') %>
+
+<section class="admin-title">
+  <div>
+    <a class="back-link" href="/admin/candidatures">Retour aux candidatures</a>
+    <p class="eyebrow">Dossier candidat</p>
+    <h1><%= application.reference_number %></h1>
+  </div>
+  <span class="status status--<%= application.status %>"><%= statusLabel(application.status) %></span>
+</section>
+
+<section class="admin-grid">
+  <article class="admin-panel">
+    <h2>Informations candidat</h2>
+    <dl class="detail-list">
+      <div><dt>Nom</dt><dd><%= application.last_name %></dd></div>
+      <div><dt>Prenom</dt><dd><%= application.first_name %></dd></div>
+      <div><dt>Naissance</dt><dd><%= formatDate(application.birth_date) %> a <%= application.birth_place %></dd></div>
+      <div><dt>Sexe</dt><dd><%= application.gender %></dd></div>
+      <div><dt>Nationalite</dt><dd><%= application.nationality %></dd></div>
+      <div><dt>Telephone</dt><dd><%= application.phone %></dd></div>
+      <div><dt>E-mail</dt><dd><%= application.email %></dd></div>
+      <div><dt>Adresse</dt><dd><%= application.address %></dd></div>
+    </dl>
+  </article>
+
+  <article class="admin-panel">
+    <h2>Candidature</h2>
+    <dl class="detail-list">
+      <div><dt>Cycle</dt><dd><%= application.cycle_name %></dd></div>
+      <div><dt>Filiere</dt><dd><%= application.program_code %> - <%= application.program_name %></dd></div>
+      <div><dt>Centre</dt><dd><%= application.center_name %></dd></div>
+      <div><dt>Dernier diplome</dt><dd><%= application.last_degree %></dd></div>
+      <div><dt>Etablissement</dt><dd><%= application.school %> (<%= application.graduation_year %>)</dd></div>
+      <div><dt>Recu paiement</dt><dd><%= application.payment_receipt_number %></dd></div>
+      <div><dt>Fonctionnaire</dt><dd><%= application.is_civil_servant ? 'Oui' : 'Non' %></dd></div>
+      <% if (application.civil_servant_details) { %>
+        <div><dt>Precision</dt><dd><%= application.civil_servant_details %></dd></div>
+      <% } %>
+    </dl>
+  </article>
+</section>
+
+<section class="admin-grid">
+  <article class="admin-panel">
+    <h2>Pieces justificatives</h2>
+    <div class="compact-list">
+      <% documents.forEach((doc) => { %>
+        <a href="/admin/pieces/<%= doc.id %>">
+          <strong><%= doc.label %></strong>
+          <span><%= doc.original_name %> - <%= fileSize(doc.size) %></span>
+        </a>
+      <% }) %>
+    </div>
+  </article>
+
+  <article class="admin-panel">
+    <h2>Traitement du dossier</h2>
+    <form action="/admin/candidatures/<%= application.id %>/statut" method="post">
+      <label>
+        <span>Statut</span>
+        <select name="status">
+          <% statuses.forEach((status) => { %>
+            <option value="<%= status.value %>" <%= application.status === status.value ? 'selected' : '' %>><%= status.label %></option>
+          <% }) %>
+        </select>
+      </label>
+      <label>
+        <span>Observations administratives</span>
+        <textarea name="admin_comment" rows="6"><%= application.admin_comment || '' %></textarea>
+      </label>
+      <button class="button" type="submit">Mettre a jour</button>
+    </form>
+  </article>
+</section>
+
+<%- include('../partials/admin-end') %>

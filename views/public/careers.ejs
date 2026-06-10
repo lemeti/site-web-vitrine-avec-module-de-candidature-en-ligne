@@ -1,0 +1,21 @@
+<%- include('../partials/site-start') %>
+
+<section class="page-hero page-hero--simple">
+  <p class="eyebrow">Insertion</p>
+  <h1>Debouches professionnels</h1>
+  <p>Chaque filiere ouvre vers des metiers de creation, de mediation, de production ou d'encadrement culturel.</p>
+</section>
+
+<section class="section">
+  <div class="cards">
+    <% programs.forEach((program) => { %>
+      <article class="card">
+        <span class="program-code"><%= program.code %></span>
+        <h2><%= program.name %></h2>
+        <p><%= program.careers %></p>
+      </article>
+    <% }) %>
+  </div>
+</section>
+
+<%- include('../partials/site-end') %>
