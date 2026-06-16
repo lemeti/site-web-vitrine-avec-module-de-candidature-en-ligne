@@ -38,63 +38,88 @@ La version actuelle contient le frontend statique. Elle sert de structure princi
 - `admin/espace-gestion` : espace d'administration pour consulter les candidatures, gerer les statuts, les actualites et les parametres.
 - `integration/fullstack` : branche d'assemblage pour connecter frontend, backend, API et base de donnees avant fusion dans `main`.
 
-## Utilisation des branches
+## Collaboration publique par fork
 
-Avant de commencer une tache, revenir sur `main` et recuperer la derniere version :
+Le depot est public. Les contributeurs n'ont pas besoin d'etre ajoutes comme collaborateurs directs pour proposer des modifications.
 
-```bash
-git checkout main
-git pull origin main
+La methode retenue est :
+
+1. Le contributeur fait un fork du depot sur son compte GitHub.
+2. Il clone son fork sur son ordinateur.
+3. Il cree une branche de travail dans son fork.
+4. Il fait ses modifications.
+5. Il pousse sa branche dans son fork.
+6. Il ouvre une Pull Request vers la branche adaptee du depot principal.
+
+Lien du depot principal :
+
+```text
+https://github.com/lemeti/site-web-vitrine-avec-module-de-candidature-en-ligne
 ```
 
-Pour travailler sur l'interface :
+## Etapes pour contribuer
+
+Sur GitHub, cliquer sur `Fork` en haut a droite du depot principal.
+
+Cloner ensuite le fork sur son ordinateur :
 
 ```bash
-git checkout frontend/interface-vitrine
-git pull origin frontend/interface-vitrine
+git clone https://github.com/VOTRE-PSEUDO/site-web-vitrine-avec-module-de-candidature-en-ligne.git
+cd site-web-vitrine-avec-module-de-candidature-en-ligne
 ```
 
-Pour travailler sur le serveur :
+Ajouter le depot principal comme source de reference :
 
 ```bash
-git checkout backend/serveur-application
-git pull origin backend/serveur-application
+git remote add upstream https://github.com/lemeti/site-web-vitrine-avec-module-de-candidature-en-ligne.git
+git fetch upstream
 ```
 
-Pour travailler sur l'API :
+Creer une branche de travail depuis la branche adaptee :
 
 ```bash
-git checkout api/candidatures-contact
-git pull origin api/candidatures-contact
+git checkout -b nom-de-votre-tache upstream/branche-cible
 ```
 
-Pour travailler sur la base de donnees :
+Exemple pour une modification frontend :
 
 ```bash
-git checkout database/schema-donnees
-git pull origin database/schema-donnees
+git checkout -b amelioration-menu-mobile upstream/frontend/interface-vitrine
 ```
 
-Pour travailler sur l'administration :
-
-```bash
-git checkout admin/espace-gestion
-git pull origin admin/espace-gestion
-```
-
-Pour tester l'ensemble du projet connecte :
-
-```bash
-git checkout integration/fullstack
-git pull origin integration/fullstack
-```
-
-Apres chaque modification :
+Apres modification :
 
 ```bash
 git add .
-git commit -m "Description courte de la tache"
-git push origin nom-de-la-branche
+git commit -m "Ameliore le menu mobile"
+git push origin amelioration-menu-mobile
 ```
 
-Une fois la tache terminee, ouvrir une Pull Request vers `main` sur GitHub.
+Sur GitHub, ouvrir ensuite une Pull Request :
+
+- `base repository` : `lemeti/site-web-vitrine-avec-module-de-candidature-en-ligne`
+- `base branch` : la branche cible du projet
+- `compare` : la branche du fork du contributeur
+
+## Quelle branche choisir
+
+- Pour les pages publiques, le style, le responsive, la navigation et la galerie : Pull Request vers `frontend/interface-vitrine`.
+- Pour le serveur, la logique metier, les validations, la securite et les uploads : Pull Request vers `backend/serveur-application`.
+- Pour les routes API, candidatures, contact, actualites, filieres, cycles et centres : Pull Request vers `api/candidatures-contact`.
+- Pour le schema SQL, les migrations, les relations et les donnees initiales : Pull Request vers `database/schema-donnees`.
+- Pour le tableau de bord, la gestion des candidatures, des statuts, des actualites et des parametres : Pull Request vers `admin/espace-gestion`.
+- Pour connecter plusieurs parties ensemble avant validation finale : Pull Request vers `integration/fullstack`.
+- Pour `main` : uniquement les versions stables deja verifiees.
+
+## Garder son fork a jour
+
+Avant de commencer une nouvelle tache, recuperer la derniere version du depot principal :
+
+```bash
+git fetch upstream
+git checkout main
+git merge upstream/main
+git push origin main
+```
+
+Puis creer une nouvelle branche de tache depuis la bonne branche cible.
