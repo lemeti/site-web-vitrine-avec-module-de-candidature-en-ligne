@@ -1,79 +1,20 @@
 # IBA Nkongsamba - Site vitrine frontend
 
-Projet frontend statique pour l'Institut Universitaire des Beaux-Arts de l'Universite de Douala a Nkongsamba, avec pages vitrines et formulaire de candidature en ligne.
+Site frontend statique pour l'Institut Universitaire des Beaux-Arts de l'Universite de Douala a Nkongsamba.
 
-## Fonctionnalites
+## Fonctionnalites du site
 
-- Pages vitrines : accueil, a propos, filieres, admissions, diplomes, debouches, actualites, galerie, contact, FAQ, confidentialite.
-- Formulaire de candidature avec identite, contact, cycle, filiere, centre, parcours, paiement et situation fonctionnaire.
-- Ajout des pieces justificatives en PDF, JPG ou PNG depuis le formulaire frontend.
-- Controle HTML des champs obligatoires et affichage automatique de la date limite.
-- Formulaires statiques compatibles avec un hebergement frontend comme Netlify.
-- Actualites et donnees de reference stockees dans des fichiers JavaScript statiques.
-
-## Prerequis
-
-- Node.js 18 ou plus recent.
-- npm.
-
-Aucun serveur Express, aucune base de donnees et aucun stockage local de candidatures ne sont inclus.
-
-## Installation
-
-```bash
-npm install
-```
-
-## Build frontend
-
-Le projet peut generer une version frontend uniquement, compatible avec Netlify :
-
-```bash
-npm run build
-```
-
-La sortie statique est generee dans :
-
-```text
-dist/
-```
-
-Cette version contient uniquement des fichiers frontend statiques.
-
-Configuration Netlify deja fournie dans `netlify.toml` :
-
-```text
-Build command: npm run build
-Publish directory: dist
-Node version: 18
-```
-
-Pour deployer avec Netlify CLI :
-
-```bash
-npm install -g netlify-cli
-netlify login
-netlify init
-netlify deploy --build
-netlify deploy --prod --build
-```
-
-Pour deployer via GitHub, poussez le depot sur GitHub puis importez-le dans Netlify. Netlify utilisera automatiquement `netlify.toml`.
-
-## Structure
-
-```text
-scripts/
-  build-static.js  Generation des pages HTML
-  site-data.js     Donnees statiques du site
-views/          Templates EJS
-public/         CSS et JavaScript client
-dist/           Sortie statique generee
-```
-
-## Tests manuels recommandes
-
-1. Ouvrir les pages vitrines principales sur desktop et mobile.
-2. Verifier le menu responsive.
-3. Remplir le formulaire de candidature et verifier les champs obligatoires.
-4. Verifier les pages actualites, contact, FAQ et confidentialite.
+- Page d'accueil institutionnelle avec presentation de l'IBA, acces rapide aux admissions et mise en avant des filieres.
+- Page de presentation de l'institut avec mission, objectifs et parties prenantes.
+- Catalogue des filieres avec code, description, diplomes associes et debouches professionnels.
+- Page admissions avec cycles ouverts, centres de composition, calendrier et pieces demandees.
+- Formulaire de candidature en ligne avec sections identite, contact, choix de cycle, filiere, centre, parcours academique, paiement et situation fonctionnaire.
+- Champs obligatoires controles cote navigateur pour guider le candidat pendant la saisie.
+- Ajout de pieces justificatives au format PDF, JPG ou PNG depuis le formulaire.
+- Pages diplomes et debouches pour presenter les parcours et orientations professionnelles.
+- Rubrique actualites avec liste des annonces et pages detaillees.
+- Galerie visuelle des domaines artistiques representes par l'institut.
+- Page contact avec coordonnees et formulaire de message.
+- Pages FAQ et confidentialite pour informer les candidats.
+- Navigation responsive avec menu adapte aux ecrans mobiles.
+- Interface frontend generee en HTML, CSS et JavaScript statiques.
