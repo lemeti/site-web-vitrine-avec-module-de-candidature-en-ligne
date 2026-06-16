@@ -28,13 +28,6 @@ for (const form of document.querySelectorAll('form[data-confirm]')) {
   });
 }
 
-for (const form of document.querySelectorAll('form[data-static-form="true"]')) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault();
-    window.alert('La soumission de candidature necessite le backend. Cette version Netlify publie uniquement le frontend.');
-  });
-}
-
 for (const button of document.querySelectorAll('[data-print]')) {
   button.addEventListener('click', () => window.print());
 }

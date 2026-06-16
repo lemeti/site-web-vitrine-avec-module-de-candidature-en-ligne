@@ -9,17 +9,12 @@
   <h1>Candidature en ligne</h1>
   <p>
     Renseignez les informations demandees, choisissez votre cycle, votre filiere
-    et votre centre de composition, puis televersez les pieces justificatives.
+    et votre centre de composition, puis joignez les pieces justificatives.
   </p>
   <span class="deadline">Date limite : <%= formatDate(deadline) %></span>
 </section>
 
 <section class="section">
-  <% if (staticOnly) { %>
-    <div class="alert alert--warning">
-      Cette version Netlify est statique : le formulaire permet de visualiser le parcours candidat, mais la soumission definitive necessite le backend.
-    </div>
-  <% } %>
   <% if (!isOpen) { %>
     <div class="alert alert--error">
       La periode de depot des dossiers est fermee.
@@ -29,7 +24,12 @@
     <div class="alert alert--error"><%= errors.form %></div>
   <% } %>
 
-  <form class="application-form" action="<%= staticOnly ? '#' : '/candidature' %>" method="post" enctype="multipart/form-data" data-static-form="<%= staticOnly ? 'true' : 'false' %>" novalidate>
+  <form class="application-form" action="/merci/" method="post" enctype="multipart/form-data" name="candidature" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+    <input type="hidden" name="form-name" value="candidature">
+    <label class="is-hidden">
+      <span>Ne pas remplir</span>
+      <input name="bot-field">
+    </label>
     <fieldset>
       <legend>Identite du candidat</legend>
       <div class="form-grid">
@@ -187,7 +187,7 @@
         En soumettant ce dossier, vous confirmez l'exactitude des informations fournies
         et acceptez leur traitement par l'IBA pour les admissions <%= academicYear %>.
       </p>
-      <button class="button" type="submit" <%= isOpen && !staticOnly ? '' : 'disabled' %>><%= staticOnly ? 'Soumission indisponible sur Netlify' : 'Soumettre le dossier' %></button>
+      <button class="button" type="submit" <%= isOpen ? '' : 'disabled' %>>Envoyer le dossier</button>
     </div>
   </form>
 </section>

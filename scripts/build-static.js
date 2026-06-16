@@ -5,22 +5,44 @@ const ejs = require('ejs');
 
 const {
   academicYear,
+  admissionMessage,
   appName,
-  applicationStatuses,
+  applicationDeadline,
+  centers,
+  contactAddress,
+  contactEmail,
+  contactPhone,
+  cycles,
   documentTypes,
-  rootDir,
-  uploadMaxFileSize
-} = require('../src/config/app');
-const db = require('../src/db/connection');
-const { seedDefaults } = require('../src/db/seed');
-const { getSetting } = require('../src/services/settings');
-const { fileSize, formatDate, formatDateTime, isApplicationOpen, statusLabel } = require('../src/utils/format');
+  news,
+  programs,
+  uploadMaxMegaBytes
+} = require('./site-data');
 
+const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 const viewsDir = path.join(rootDir, 'views');
 
-function all(sql, params = []) {
-  return db.prepare(sql).all(...params);
+function formatDate(value) {
+  if (!value) {
+    return '';
+  }
+
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric'
+  }).format(new Date(`${value}T00:00:00`));
+}
+
+function isApplicationOpen(deadline) {
+  if (!deadline) {
+    return true;
+  }
+
+  const now = new Date();
+  const limit = new Date(`${deadline}T23:59:59`);
+  return now <= limit;
 }
 
 function cleanDist() {
@@ -37,15 +59,9 @@ function baseLocals(routePath, overrides = {}) {
     appName,
     academicYear,
     currentPath: routePath,
-    flash: null,
-    admin: null,
-    statuses: applicationStatuses,
-    statusLabel,
     formatDate,
-    formatDateTime,
-    fileSize,
-    contactEmail: getSetting('contact_email', 'scolarite@iba-douala.cm'),
-    contactPhone: getSetting('contact_phone', '+237 6 99 00 00 00'),
+    contactEmail,
+    contactPhone,
     staticOnly: true,
     ...overrides
   };
@@ -53,9 +69,9 @@ function baseLocals(routePath, overrides = {}) {
 
 function referenceData() {
   return {
-    programs: all('SELECT * FROM programs ORDER BY name'),
-    cycles: all('SELECT * FROM cycles ORDER BY id'),
-    centers: all('SELECT * FROM centers ORDER BY name')
+    programs,
+    cycles,
+    centers
   };
 }
 
@@ -86,15 +102,11 @@ async function renderFile(template, outputFile, locals) {
 }
 
 async function build() {
-  seedDefaults();
   cleanDist();
   copyAssets();
 
   const refs = referenceData();
-  const programs = refs.programs;
-  const news = all('SELECT * FROM news WHERE is_published = 1 ORDER BY published_at DESC, id DESC');
-  const deadline = getSetting('application_deadline');
-  const admissionMessage = getSetting('admission_message');
+  const deadline = applicationDeadline;
 
   await render(
     'public/home.ejs',
@@ -148,7 +160,7 @@ async function build() {
       active: 'candidature',
       ...refs,
       documentTypes,
-      uploadMaxMegaBytes: Math.round(uploadMaxFileSize / (1024 * 1024)),
+      uploadMaxMegaBytes,
       deadline,
       isOpen: isApplicationOpen(deadline),
       errors: {},
@@ -213,7 +225,7 @@ async function build() {
     baseLocals('/contact', {
       title: 'Contacts',
       active: 'contact',
-      address: getSetting('contact_address')
+      address: contactAddress
     })
   );
 
@@ -253,7 +265,7 @@ async function build() {
     })
   );
 
-  console.log('Static Netlify build completed.');
+  console.log('Static frontend build completed.');
 }
 
 build().catch((error) => {

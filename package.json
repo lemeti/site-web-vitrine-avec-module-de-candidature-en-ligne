@@ -2,37 +2,23 @@
   "name": "iba-candidatures",
   "version": "1.0.0",
   "description": "Site vitrine avec module de candidature en ligne pour l'Institut Universitaire des Beaux-Arts de l'Universite de Douala a Nkongsamba.",
-  "main": "src/server.js",
   "type": "commonjs",
   "scripts": {
     "build": "node scripts/build-static.js",
-    "build:static": "node scripts/build-static.js",
-    "dev": "node --watch src/server.js",
-    "start": "node src/server.js",
-    "seed": "node src/db/seed.js"
+    "build:static": "node scripts/build-static.js"
   },
   "keywords": [
     "iba",
     "candidature",
-    "express",
-    "sqlite"
+    "frontend",
+    "static"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "compression": "^1.8.1",
-    "dotenv": "^17.2.3",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "express-rate-limit": "^8.2.1",
-    "express-session": "^1.18.2",
-    "helmet": "^8.1.0",
-    "method-override": "^3.0.0",
-    "multer": "^2.0.2",
-    "zod": "^4.1.13"
+    "ejs": "^3.1.10"
   },
   "engines": {
-    "node": ">=24.0.0"
+    "node": ">=18.0.0"
   }
 }

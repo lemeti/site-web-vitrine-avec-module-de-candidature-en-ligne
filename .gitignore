@@ -1,9 +1,3 @@
 node_modules/
 dist/
-.env
-storage/database/*.sqlite
-storage/database/*.sqlite-*
-storage/uploads/*
-!storage/uploads/.gitkeep
-!storage/database/.gitkeep
 npm-debug.log*
