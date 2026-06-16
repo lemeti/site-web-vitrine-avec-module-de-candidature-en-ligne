@@ -24,7 +24,20 @@
     <div class="alert alert--error"><%= errors.form %></div>
   <% } %>
 
-  <form class="application-form" action="/merci/" method="post" enctype="multipart/form-data" name="candidature" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+  <form
+    class="application-form"
+    id="application-form"
+    action="/merci/"
+    method="post"
+    enctype="multipart/form-data"
+    name="candidature"
+    data-form="application"
+    data-api-endpoint="/api/candidatures"
+    data-success-url="/merci/"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    novalidate
+  >
     <input type="hidden" name="form-name" value="candidature">
     <label class="is-hidden">
       <span>Ne pas remplir</span>

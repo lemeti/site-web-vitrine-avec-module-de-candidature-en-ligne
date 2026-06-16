@@ -15,7 +15,16 @@
       <div><dt>E-mail</dt><dd><%= contactEmail %></dd></div>
     </dl>
   </div>
-  <form class="contact-form" action="<%= staticOnly ? '/merci/' : '/contact' %>" method="post" <%- staticOnly ? 'name="contact" data-netlify="true" netlify-honeypot="bot-field"' : '' %>>
+  <form
+    class="contact-form"
+    id="contact-form"
+    action="<%= staticOnly ? '/merci/' : '/contact' %>"
+    method="post"
+    data-form="contact"
+    data-api-endpoint="/api/contact"
+    data-success-url="/merci/"
+    <%- staticOnly ? 'name="contact" data-netlify="true" netlify-honeypot="bot-field"' : '' %>
+  >
     <% if (staticOnly) { %>
       <input type="hidden" name="form-name" value="contact">
       <label class="is-hidden">
