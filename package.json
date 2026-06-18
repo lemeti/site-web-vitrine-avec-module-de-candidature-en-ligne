@@ -5,18 +5,32 @@
   "type": "commonjs",
   "scripts": {
     "build": "node scripts/build-static.js",
-    "build:static": "node scripts/build-static.js"
+    "build:static": "node scripts/build-static.js",
+    "dev": "nodemon server/index.js",
+    "start": "node server/index.js"
   },
   "keywords": [
     "iba",
     "candidature",
     "frontend",
-    "static"
+    "static",
+    "backend",
+    "api"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^3.1.10"
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "ejs": "^3.1.10",
+    "express": "^4.22.2",
+    "helmet": "^7.2.0",
+    "multer": "^1.4.4",
+    "winston": "^3.19.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   },
   "engines": {
     "node": ">=18.0.0"
