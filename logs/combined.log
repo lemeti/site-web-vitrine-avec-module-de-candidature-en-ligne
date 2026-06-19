@@ -10,3 +10,24 @@
 {"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T01:45:49.371Z"}
 {"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T01:45:49.371Z"}
 {"error":"ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","level":"error","message":"Erreur serveur:","stack":"Error: ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","timestamp":"2026-06-19T01:48:16.512Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:10:48.380Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:10:48.386Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:10:48.387Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:16:21.213Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:16:21.219Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:16:21.220Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:41:23.436Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:41:23.564Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:41:23.589Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:41:43.748Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:41:43.758Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:41:43.760Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:43:45.507Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:43:45.512Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:43:45.512Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T02:44:27.239Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T02:44:27.245Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T02:44:27.247Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T03:28:25.991Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T03:28:26.016Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T03:28:26.018Z"}
