@@ -59,6 +59,7 @@ function handleMulterError(err, req, res, next) {
     if (err.code === 'LIMIT_FILE_SIZE') {
       return res.status(400).json({
         error: `Fichier trop volumineux. Taille maximale autorisée: 5 Mo`
+        
       });
     }
     return res.status(400).json({ error: err.message });

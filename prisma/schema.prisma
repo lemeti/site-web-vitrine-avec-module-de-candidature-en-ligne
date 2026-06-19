@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Candidature {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  status    String   @default("reçue")
+
+  // Identité
+  last_name       String
+  first_name      String
+  birth_date      String
+  birth_place     String
+  gender          String
+  nationality     String
+
+  // Contact
+  email    String @unique
+  phone    String
+  address  String
+
+  // Choix
+  cycle_id       String
+  program_id     String
+  center_id      String
+  receipt_number String
+
+  // Parcours
+  last_degree     String
+  school          String
+  graduation_year String
+
+  // Fonctionnaire
+  is_civil_servant        Boolean @default(false)
+  civil_servant_details   String?
+  files                   String?
+}

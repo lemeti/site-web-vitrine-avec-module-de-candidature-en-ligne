@@ -2,3 +2,11 @@
 {"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-18T03:19:37.025Z"}
 {"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-18T03:19:37.025Z"}
 {"error":"ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","level":"error","message":"Erreur serveur:","stack":"Error: ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","timestamp":"2026-06-18T03:21:11.388Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-18T17:27:08.476Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-18T17:27:08.488Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-18T17:27:08.489Z"}
+{"error":"ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","level":"error","message":"Erreur serveur:","stack":"Error: ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","timestamp":"2026-06-18T17:27:21.487Z"}
+{"level":"info","message":"🚀 Serveur IBA démarré sur http://localhost:3000","timestamp":"2026-06-19T01:45:49.366Z"}
+{"level":"info","message":"📁 Environnement: development","timestamp":"2026-06-19T01:45:49.371Z"}
+{"level":"info","message":"🔗 API disponible sur http://localhost:3000/api","timestamp":"2026-06-19T01:45:49.371Z"}
+{"error":"ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","level":"error","message":"Erreur serveur:","stack":"Error: ENOENT: no such file or directory, stat 'C:\\Users\\GUIAGAIN ROMICHE\\OneDrive\\Documents\\iba-nkongsamba\\dist\\404.html'","timestamp":"2026-06-19T01:48:16.512Z"}
